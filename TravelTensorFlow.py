@@ -4,11 +4,11 @@
 #------------------------
 #Pandas for handling CSV data 
 import pandas as pd
-#numpy for xxx (Fill this)
+#numpy for maths functions
 import numpy as np
-# for xxx (Fill this)
+# for loading files
 import glob
-# for xxx (Fill this)
+# for interacting with operating system
 import os
 #matplot lib for plotting 
 import matplotlib.pyplot as plt
