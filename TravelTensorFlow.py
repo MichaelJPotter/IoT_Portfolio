@@ -1,3 +1,5 @@
+#To compile this code the interpreter version should be python3 3.10.11 as this is required to import the tenser flow
+#All libraries will need to be installed using -python3 pip install
 #import necessary Libraries 
 #------------------------
 #Pandas for handling CSV data 
@@ -72,7 +74,7 @@ feature_columns = [
 X = df[feature_columns].fillna(0) 
 y = df["label"]
 
-# TRAIN/TEST SPLIT
+# Train and test split
 X_train, X_test, y_train, y_test = train_test_split(
     X, y,
     test_size=0.2,
@@ -80,13 +82,13 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=y
 )
 
-# FEATURE SCALING
+# Feature scaling
 # Neural networks work best when features are standardised
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-# BUILD THE TENSORFLOW MODEL
+# Tenserflow model build
 model = models.Sequential([
     layers.Dense(32, activation='relu', input_shape=(X_train.shape[1],)),
     layers.Dense(32, activation='relu'),
@@ -96,15 +98,12 @@ model = models.Sequential([
 
 model.compile(
     optimizer='adam',
-    loss='sparse_categorical_crossentropy',  # labels are integers (0/1/2)
+    loss='sparse_categorical_crossentropy',  #Data labels are integers (0/1/2)
     metrics=['accuracy']
 )
-
 model.summary()
 
-
-
-# TRAIN THE MODEL (15 EPOCHS)
+# Train the model (15 cycles)
 history = model.fit(
     X_train,
     y_train,
@@ -113,8 +112,7 @@ history = model.fit(
     validation_split=0.2
 )
 
-
-# PLOT TRAINING ACCURACY + LOSS
+# Plot the training accuracy and loss values
 plt.figure(figsize=(12, 5))
 
 # Accuracy
@@ -134,16 +132,12 @@ plt.title("Model Loss")
 plt.xlabel("Epoch")
 plt.ylabel("Loss")
 plt.legend()
-
 plt.tight_layout()
 plt.show()
 
-
-
-# CONFUSION MATRIX
+# Confusion Matrix
 
 y_pred = np.argmax(model.predict(X_test), axis=1)
-
 cm = confusion_matrix(y_test, y_pred)
 
 plt.figure(figsize=(6, 5))
@@ -159,9 +153,6 @@ plt.title("Confusion Matrix")
 plt.xlabel("Predicted")
 plt.ylabel("True")
 plt.show()
-
-
-# CLASSIFICATION REPORT
 
 print("\nClassification Report:\n")
 print(classification_report(
