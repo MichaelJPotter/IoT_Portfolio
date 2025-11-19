@@ -18,7 +18,7 @@ from sklearn.metrics import confusion_matrix, classification_report
 import seaborn as sns
 #tensorflow for deeplearning
 import tensorflow as tf
-from tensorflow.keras import layers, models
+from tensorflow import keras 
 
 def load_labeled_csvs(basePath):
     
