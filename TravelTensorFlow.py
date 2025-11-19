@@ -57,8 +57,8 @@ def load_labeled_csvs(basePath):
     return pd.concat(data, ignore_index=True)
 
 
-# Used absolute path so there's no confusion about working directory
-basePath = r"C:\Users\kikit\OneDrive - Bath Spa University\gitHub\IoT_Portfolio\MCJASM-Group-Data\MCJASM-Group-Data"
+# Defining paths to datasets
+basePath = r"MCJASM-Group-Data\MCJASM-Group-Data"
 
 df = load_labeled_csvs(basePath)
 print("Loaded dataset shape:", df.shape)
