@@ -21,13 +21,8 @@ import tensorflow as tf
 from tensorflow.keras import layers, models
 
 def load_labeled_csvs(basePath):
-    """
-    This function:
-    - 
-    - Loads all CSV files inside each folder
-    - Adds a 'label' column based on the folder name
-    - Combines all CSVs into one big dataset
-    """
+    
+    
 
     data = []
 
@@ -63,3 +58,4 @@ basePath = r"MCJASM-Group-Data\MCJASM-Group-Data"
 df = load_labeled_csvs(basePath)
 print("Loaded dataset shape:", df.shape)
 
+#Tensorflow only works on Python 3.10
