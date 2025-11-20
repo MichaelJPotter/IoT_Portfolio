@@ -1,4 +1,8 @@
+#To compile this code the interpreter version should be python3 3.10.11 as this is required to import the tenser flow
+#All libraries will need to be installed using -python3 pip install
+
 #--- Importing libraries --- 
+#Import necessary Libraries 
 #For handling CSV data 
 import pandas as pd
 import numpy as np
@@ -60,7 +64,11 @@ X = df[feature_columns].fillna(0)
 # y is the labels of the transport type (bus/car/train) 
 y = df["label"]
 
+<<<<<<< HEAD
 #setting the training to testing split (we decided on 8:2)
+=======
+# Train and test split
+>>>>>>> 65a0f9952e310d540ef377b4cadda5dbcdb5c10c
 X_train, X_test, y_train, y_test = train_test_split(
     X, y,
     test_size=0.2, #20% of data is reserved for testing
@@ -68,12 +76,21 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=y
 )
 
+<<<<<<< HEAD
 # Standardising features of the data to better fit the model
+=======
+# Feature scaling
+# Neural networks work best when features are standardised
+>>>>>>> 65a0f9952e310d540ef377b4cadda5dbcdb5c10c
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
+<<<<<<< HEAD
 #Building the tensorflow model
+=======
+# Tenserflow model build
+>>>>>>> 65a0f9952e310d540ef377b4cadda5dbcdb5c10c
 model = models.Sequential([
     layers.Dense(32, activation='relu', input_shape=(X_train.shape[1],)),
     layers.Dense(32, activation='relu'),
@@ -83,13 +100,16 @@ model = models.Sequential([
 
 model.compile(
     optimizer='adam',
-    loss='sparse_categorical_crossentropy',  # labels are integers (0/1/2)
+    loss='sparse_categorical_crossentropy',  #Data labels are integers (0/1/2)
     metrics=['accuracy']
 )
-
 model.summary()
 
+<<<<<<< HEAD
 #Training the tensorflow model
+=======
+# Train the model (15 cycles)
+>>>>>>> 65a0f9952e310d540ef377b4cadda5dbcdb5c10c
 history = model.fit(
     X_train,
     y_train,
@@ -98,7 +118,11 @@ history = model.fit(
     validation_split=0.2
 )
 
+<<<<<<< HEAD
 #--- Data Visualisation ---
+=======
+# Plot the training accuracy and loss values
+>>>>>>> 65a0f9952e310d540ef377b4cadda5dbcdb5c10c
 plt.figure(figsize=(12, 5))
 
 # Plotting accuracy 
@@ -118,12 +142,20 @@ plt.title("Model Loss")
 plt.xlabel("Epoch")
 plt.ylabel("Loss")
 plt.legend()
+<<<<<<< HEAD
 
 #Displaying Accuracy & Loss
 plt.tight_layout()
 plt.show()
 
 #Creating confusion matrix
+=======
+plt.tight_layout()
+plt.show()
+
+# Confusion Matrix
+
+>>>>>>> 65a0f9952e310d540ef377b4cadda5dbcdb5c10c
 y_pred = np.argmax(model.predict(X_test), axis=1)
 cm = confusion_matrix(y_test, y_pred)
 #Plotting confusion matrix heatmap
@@ -143,7 +175,10 @@ plt.ylabel("True")
 #Displaying confusion matrix
 plt.show()
 
+<<<<<<< HEAD
 #Classification report
+=======
+>>>>>>> 65a0f9952e310d540ef377b4cadda5dbcdb5c10c
 print("\nClassification Report:\n")
 print(classification_report(
     y_test,
